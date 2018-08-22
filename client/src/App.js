@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 
 class App extends Component {
   // Initialize state
@@ -7,18 +7,18 @@ class App extends Component {
 
   // Fetch passwords after first mount
   componentDidMount() {
-    this.getPasswords();
+    this.getPasswords()
   }
 
   getPasswords = () => {
     // Get the passwords and store them in state
     fetch('/api/passwords')
       .then(res => res.json())
-      .then(passwords => this.setState({ passwords }));
+      .then(passwords => this.setState({ passwords }))
   }
 
   render() {
-    const { passwords } = this.state;
+    const { passwords } = this.state
 
     return (
       <div className="App">
@@ -34,9 +34,9 @@ class App extends Component {
                 change positions in the array.
               */}
               {passwords.map((password, index) =>
-                <li key={index}>
+                (<li key={index}>
                   {password}
-                </li>
+                </li>)
               )}
             </ul>
             <button
@@ -57,8 +57,8 @@ class App extends Component {
           </div>
         )}
       </div>
-    );
+    )
   }
 }
 
-export default App;
+export default App
