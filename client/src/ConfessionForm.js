@@ -19,7 +19,7 @@ export default class ConfessionForm extends Component {
       <form className="w-100 confessions__form bg-custom-gray pa3" onSubmit={this.handleSubmit}>
         <div className="pv3">
           <label className="mr2">Name:</label>
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
+          <text type="text" value={this.state.value} onChange={this.handleChange} />
         </div>
         <div>
           <input type="submit" value="Submit" />
