@@ -4,10 +4,14 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.15.3"
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mongodb": "^3.1.3"
   },
   "scripts": {
     "start": "node index.js",
     "heroku-postbuild": "cd client && yarn && yarn run build"
-  }
+  },
+  "repository": "git@github.com:salesfelipe/confession-booth.git",
+  "author": "Felipe Sales <sales.felipeb@gmail.com>"
 }
