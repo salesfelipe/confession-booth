@@ -1,8 +1,10 @@
 import React, { Component, Fragment } from 'react'
 
 import './App.css'
-import ConfessionForm from './ConfessionForm'
-import ConfessionFeed from './ConfessionFeed'
+
+import Header from './components/Header'
+import ConfessionForm from './components/ConfessionForm'
+import ConfessionFeed from './components/ConfessionFeed'
 
 class App extends Component {
   state = { confessions: [] }
@@ -21,6 +23,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
+        <Header />
         <div className="w-100 pa4">
           <h3 className="f1 tc measure">"Tell me what you did on the past summer ;P"</h3>
         </div>

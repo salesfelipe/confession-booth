@@ -27,6 +27,25 @@ body {
   background-color: #393e46;
 }
 
+.bg-custom-white {
+  background-color: #EEE;
+}
+
 .custom-white {
   color: #EEE;
+}
+
+.custom-blue {
+  color: #00ADB5;
+}
+
+.custom-gray {
+  color: #393e46;
+}
+
+.upper {
+  text-transform: uppercase;
+}
+
+.cb-header {
 }
