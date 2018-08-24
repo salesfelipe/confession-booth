@@ -3,8 +3,30 @@ import PropTypes from 'prop-types'
 
 /* Header Component with login/logout form */
 export default class Header extends Component {
+  state = {
+    email: '',
+    password: '',
+  }
+
+  handleChangeEmail = (event) => {
+    this.setState({ email: event.target.value })
+  }
+
+  handleChangePassword = (event) => {
+    this.setState({ password: event.target.value })
+  }
+
+  handleSubmit = (event) => {
+    const { email, password } = this.state
+
+    this.props.onLogin({ email, password })
+
+    event.preventDefault()
+  }
+
   render() {
-    const { onLogin, onLogout, profile } = this.props
+    const { onLogout, profile } = this.props
+    const { email, password } = this.state
 
     return (
       <div className="cb-header w-100 top-0 absolute shadow-3 bg-custom-dark-gray pa3 f7">
@@ -17,14 +39,14 @@ export default class Header extends Component {
           </Fragment>
         ) : (
           <Fragment>
-            <form className="fr f7 custom-blue upper" onSubmit={onLogin}>
+            <form className="fr f7 custom-blue upper" onSubmit={this.handleSubmit}>
               <span className="mr2">
                 <label className="mr2">Email</label>
-                <input className="bg-custom-white custom-gray" />
+                <input className="bg-custom-white custom-gray" value={email} onChange={this.handleChangeEmail} />
               </span>
               <span className="mr2">
                 <label className="mr2">Password</label>
-                <input className="bg-custom-white custom-gray" type="password" />
+                <input className="bg-custom-white custom-gray" value={password} onChange={this.handleChangePassword} type="password" />
               </span>
               <button className="bg-custom-gray custom-blue bn pa2 upper" type="submit">Login</button>
             </form>

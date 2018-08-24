@@ -7,10 +7,16 @@ import ConfessionForm from './components/ConfessionForm'
 import ConfessionFeed from './components/ConfessionFeed'
 
 class App extends Component {
-  state = { confessions: [] }
+  state = { confessions: [], profile: null }
 
-  componentDidMount() {
-    //    this.getPasswords()
+  handleLogin = (info) => {
+    if (info.password === '1234' && info.email) {
+      this.setState({ profile: { email: info.email, username: 'suricato-seboso' } })
+    }
+  }
+
+  handleLogout = () => {
+    this.setState({ profile: null })
   }
 
   // getPasswords = () => {
@@ -23,7 +29,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <Header />
+        <Header profile={this.state.profile} onLogin={this.handleLogin} onLogout={this.handleLogout} />
         <div className="w-100 pa4">
           <h3 className="f1 tc measure">"Tell me what you did on the past summer ;P"</h3>
         </div>
