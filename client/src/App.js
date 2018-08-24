@@ -10,9 +10,14 @@ class App extends Component {
   state = { confessions: [], profile: null }
 
   handleLogin = (info) => {
+    let result = false
+
     if (info.password === '1234' && info.email) {
       this.setState({ profile: { email: info.email, username: 'suricato-seboso' } })
+      result = true
     }
+
+    return result
   }
 
   handleLogout = () => {

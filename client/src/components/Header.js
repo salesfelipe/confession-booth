@@ -19,7 +19,9 @@ export default class Header extends Component {
   handleSubmit = (event) => {
     const { email, password } = this.state
 
-    this.props.onLogin({ email, password })
+    const success = this.props.onLogin({ email, password })
+
+    if (success) { this.setState({ email: '', password: '' }) }
 
     event.preventDefault()
   }
@@ -45,10 +47,10 @@ export default class Header extends Component {
                 <input className="bg-custom-white custom-gray" value={email} onChange={this.handleChangeEmail} />
               </span>
               <span className="mr2">
-                <label className="mr2">Password</label>
+                <label className="mr2">Senha</label>
                 <input className="bg-custom-white custom-gray" value={password} onChange={this.handleChangePassword} type="password" />
               </span>
-              <button className="bg-custom-gray custom-blue bn pa2 upper" type="submit">Login</button>
+              <button className="bg-custom-gray custom-blue bn pa2 upper" type="submit">Entrar</button>
             </form>
           </Fragment>
         )}
