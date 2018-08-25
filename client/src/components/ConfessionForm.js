@@ -31,7 +31,7 @@ export default class ConfessionForm extends Component {
           
           {this.props.userName && <div className="mb3">{this.props.userName} :</div>}
           <div className="mb3">
-            <textarea className="confession-form__textarea w-100 bg-custom-gray pa3 b--black-025 custom-blue " rows="4" placeholder="Conta aí!" type="text" value={this.state.value} onChange={this.handleChange} />
+            <textarea className="confession-form__textarea w-100 bg-custom-gray pa3 b--black-025 custom-blue " rows="4" placeholder="Conta aí, ma!" type="text" value={this.state.value} onChange={this.handleChange} />
           </div>
           <div className="mb3 tr"> {todayString}</div>
 
