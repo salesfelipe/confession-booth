@@ -31,7 +31,7 @@ export default class Header extends Component {
     const { email, password } = this.state
 
     return (
-      <div className="cb-header w-100 top-0 absolute shadow-3 bg-custom-dark-gray pa3 f7">
+      <div className="cb-header w-100 top-0 absolute shadow-3 bg-custom-dark-gray pa3 f6">
         {profile ? (
           <Fragment>
             <span className="fr">
@@ -41,7 +41,7 @@ export default class Header extends Component {
           </Fragment>
         ) : (
           <Fragment>
-            <form className="fr f7 custom-blue upper" onSubmit={this.handleSubmit}>
+            <form className="fr custom-blue upper" onSubmit={this.handleSubmit}>
               <span className="mr2">
                 <label className="mr2">Email</label>
                 <input className="bg-custom-white custom-gray" value={email} onChange={this.handleChangeEmail} />

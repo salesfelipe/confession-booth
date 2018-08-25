@@ -7,8 +7,9 @@ import ConfessionForm from './components/ConfessionForm'
 import ConfessionFeed from './components/ConfessionFeed'
 
 class App extends Component {
-  state = { confessions: [], profile: null }
-
+  // state = { confessions: [], profile: null }
+  state = { confessions: [], profile: {email: 'user@email.com', userName: 'suricato-seboso'} }
+  
   handleLogin = (info) => {
     let result = false
 
