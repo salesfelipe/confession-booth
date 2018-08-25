@@ -13,36 +13,38 @@ class App extends Component {
     let result = false
 
     if (info.password === '1234' && info.email) {
-      this.setState({ profile: { email: info.email, username: 'suricato-seboso' } })
+      this.setState({ profile: { email: info.email, userName: 'suricato-seboso' } })
       result = true
     }
 
     return result
   }
 
+  handleConfessionSubmit = (text) => {
+  }
+
   handleLogout = () => {
     this.setState({ profile: null })
   }
 
-  // getPasswords = () => {
-  //   // Get the passwords and store them in state
-  //   fetch('/api/passwords')
-  //     .then(res => res.json())
-  //     .then(passwords => this.setState({ passwords }))
-  // }
-
   render() {
+    const { profile } = this.state
+
+    const userName = profile && profile.userName
+
     return (
       <Fragment>
         <Header profile={this.state.profile} onLogin={this.handleLogin} onLogout={this.handleLogout} />
         <div className="w-100 pa4">
-          <h3 className="f1 tc measure">"Tell me what you did on the past summer ;P"</h3>
+          <h1 className="tc measure">Judge no one ;P</h1>
         </div>
-        <div className="w-50-ns w-100 shadow-3">
-          <ConfessionFeed />
-        </div>
-        <div className="w-30-ns w-100 shadow-3">
-          <ConfessionForm />
+        <div className="w-60-ns w-100">
+          <div className="w-100 shadow-3 mb4">
+            <ConfessionForm userName={userName} onConfessionSubmit={this.handleConfessionSubmit}/>
+          </div>
+          <div className="shadow-3">
+            <ConfessionFeed />
+          </div>
         </div>
       </Fragment>
     )

@@ -35,8 +35,8 @@ export default class Header extends Component {
         {profile ? (
           <Fragment>
             <span className="fr">
-              Bem vindo, <b className="custom-blue">{profile.username}</b> !
-              <button className="bg-custom-gray custom-blue bn pa2 upper ml2" onClick={onLogout}>Sair</button>
+              Bem vindo, <b className="custom-blue">{profile.userName}</b> !
+              <button className="bg-custom-gray pointer custom-blue bn pa2 upper ml2" onClick={onLogout}>Sair</button>
             </span>
           </Fragment>
         ) : (
@@ -50,7 +50,7 @@ export default class Header extends Component {
                 <label className="mr2">Senha</label>
                 <input className="bg-custom-white custom-gray" value={password} onChange={this.handleChangePassword} type="password" />
               </span>
-              <button className="bg-custom-gray custom-blue bn pa2 upper" type="submit">Entrar</button>
+              <button className="bg-custom-gray pointer custom-blue bn pa2 upper" type="submit">Entrar</button>
             </form>
           </Fragment>
         )}
@@ -63,7 +63,7 @@ Header.propTypes = {
   /** User info */
   profile: PropTypes.shape({
     email: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
+    userName: PropTypes.string.isRequired,
   }),
   /** Function to login */
   onLogin: PropTypes.func.isRequired,

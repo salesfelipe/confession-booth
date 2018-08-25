@@ -46,3 +46,8 @@ body {
 .upper {
   text-transform: uppercase;
 }
+
+
+.confession-form__textarea {
+  resize: none;
+}
