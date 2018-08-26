@@ -1,8 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+import AppContainer from './containers/App'
 
 import './index.css'
 
-ReactDOM.render(<App />, document.getElementById('App'))
+library.add(fas)
+
+ReactDOM.render(<AppContainer />, document.getElementById('App'))
 

@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.2",
+    "@fortawesome/free-solid-svg-icons": "^5.2.0",
+    "@fortawesome/react-fontawesome": "^0.1.2",
     "body-parser": "^1.18.3",
     "eslint-config-vtex": "^8.0.0",
     "eslint-config-vtex-react": "^3.0.3",
