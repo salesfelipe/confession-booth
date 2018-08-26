@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
 import { profilePropTypes } from '../../containers/App/propTypes'
+import Button from '../Button'
 
 /** Login display component */
 export default class LoginHeaderComponent extends Component {
@@ -17,10 +18,14 @@ export default class LoginHeaderComponent extends Component {
       <div className="cb-header w-100 top-0 absolute shadow-3 bg-custom-dark-gray pa3 f6 mb5">
         {profile ? (
           <Fragment>
-            <span className="fr">
-              Bem vindo, &nbsp; <b className="custom-blue">{profile.userName}</b> !
-              <button className="bg-custom-gray pointer custom-blue bn pa2 upper ml2" onClick={onLogout}>Sair</button>
-            </span>
+            <div className="fr">
+              <span className="mr2">
+                Bem vindo, &nbsp; <b className="custom-blue">{profile.userName}</b> !
+              </span>
+              <Button type="submit" variation="secondary" size="small" onClick={onLogout}>
+                <span className="upper">Sair</span>
+              </Button>
+            </div>
           </Fragment>
         ) : (
           <Fragment>
@@ -33,7 +38,9 @@ export default class LoginHeaderComponent extends Component {
                 <label className="mr2">Senha</label>
                 <input className="bg-custom-white custom-gray" value={password} onChange={onChangePassword} type="password" />
               </span>
-              <button className="bg-custom-gray pointer custom-blue bn pa2 upper" type="submit">Entrar</button>
+              <Button type="submit" variation="secondary" size="small">
+                <span className="upper">Entrar</span>
+              </Button>
             </form>
           </Fragment>
         )}

@@ -29,6 +29,7 @@ export default class LoginHeaderContainer extends Component {
   }
 
   handleLogout = () => {
+    console.log('login out')
     this.props.onUpdateProfile(null)
   }
 

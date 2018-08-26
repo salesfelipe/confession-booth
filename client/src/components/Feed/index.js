@@ -1,8 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { confessionPropTypes } from '../../containers/App/propTypes'
+import Button from '../Button'
 
 /** FeedComponent to display the list of confessions */
 export default class FeedComponent extends Component {
@@ -17,9 +18,17 @@ export default class FeedComponent extends Component {
                 <div className="mb3 tr custom-blue">
                   {`${item.author} - ${item.createdAt.getDate()}/${item.createdAt.getMonth() + 1}/${item.createdAt.getFullYear()}`}
                 </div>
-                <button className="bg-custom-dark-gray pointer custom-white bn ph3 pv2  upper ml2">
-                  <FontAwesomeIcon icon="heart" />
-                </button>
+                <Button variation="tertiary" icon>
+                  {item.isLiked ? (
+                    <label className="custom-blue">
+                      {item.likes} &nbsp;<FontAwesomeIcon icon="heart" />
+                    </label>
+                  ) : (
+                    <Fragment>
+                      {item.likes} &nbsp;<FontAwesomeIcon icon="heart" />
+                    </Fragment>
+                  )}
+                </Button>
               </div>
             )
           })}

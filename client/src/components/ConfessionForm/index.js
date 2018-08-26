@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+import Button from '../Button'
+
 /** ConfessionForm component, displays the form to submit the confession. */
 export default class ConfessionFormComponent extends Component {
   handleSubmit = (event) => {
@@ -37,12 +39,11 @@ export default class ConfessionFormComponent extends Component {
             </div>
             <div className="mb3 tr"> {todayString}</div>
 
-            <button
-              className="w-100 pointer bg-custom-blue custom-white bn pa2 upper shadow-3"
-              type="submit"
-            >
-             Enviar
-            </button>
+            <Button variation="primary" type="submit" block>
+              <span className="upper">
+                Enviar
+              </span>
+            </Button>
           </div>
         </form>
       </div>
