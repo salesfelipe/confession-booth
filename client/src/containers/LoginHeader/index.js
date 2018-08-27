@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import LoginHeaderComponent from '../../components/LoginHeader'
-import { profilePropTypes } from '../App/propTypes'
+import { profilePropTypes } from '../../utils/propTypes'
 
 /** Login container, responsible for handling the login process with the server */
 export default class LoginHeaderContainer extends Component {

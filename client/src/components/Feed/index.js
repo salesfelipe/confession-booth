@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-import { confessionPropTypes } from '../../containers/App/propTypes'
+import { confessionPropTypes } from '../../utils/propTypes'
 import Button from '../Button'
 
 /** FeedComponent to display the list of confessions */

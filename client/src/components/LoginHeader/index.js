@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types'
 
-import { profilePropTypes } from '../../containers/App/propTypes'
+import { profilePropTypes } from '../../utils/propTypes'
 import Button from '../Button'
 
 /** Login display component */

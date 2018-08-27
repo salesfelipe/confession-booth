@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 
-import { profilePropTypes } from '../../containers/App/propTypes'
+import { profilePropTypes } from '../../utils/propTypes'
 import ConfessionFormComponent from '../../components/ConfessionForm'
+import { post } from '../../utils'
 
 /** ConfessionForm Container, responsible for submitting the confessions to the server */
 export default class ConfessionFormContainer extends Component {
@@ -14,7 +15,20 @@ export default class ConfessionFormContainer extends Component {
   }
 
   handleSubmit = () => {
+    const { profile } = this.props
     console.log('Confession submitted', this.state.confession)
+
+    const confession = {
+      text: this.state.confession,
+    }
+
+    if (profile) {
+      confession.author = profile.userName
+    }
+
+    post('/api/confession', confession).then(() => {
+      this.setState({ confession: '' })
+    })
   }
 
   render() {

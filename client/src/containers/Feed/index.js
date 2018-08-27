@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { profilePropTypes } from '../App/propTypes'
+import { profilePropTypes } from '../../utils/propTypes'
 import FeedComponent from '../../components/Feed'
 
 export default class FeedContainer extends Component {
