@@ -2,7 +2,7 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
-const ConfessionService = require('./ConfessionService')
+const ConfessionService = require('./services/ConfessionService.js')
 const app = express()
 
 app.use(bodyParser.json())

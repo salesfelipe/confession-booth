@@ -19,7 +19,7 @@ class ConfessionService {
   async getConfessions() {
     let confessions = null
 
-    confessions = await this.connection.find({})
+    confessions = await this.connection.find({}).sort({ createdAt: -1 })
     confessions = await confessions.toArray()
 
     return confessions
