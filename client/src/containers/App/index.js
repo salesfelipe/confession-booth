@@ -5,6 +5,8 @@ import LoginHeaderContainer from '../LoginHeader'
 import ConfessionFormContainer from '../ConfessionForm'
 import FeedContainer from '../Feed'
 
+import { get, fixConfessionsDates } from '../../utils'
+
 /**
  * App main container, responsible for rendering
  * the others containers and share the profile data with them
@@ -12,12 +14,16 @@ import FeedContainer from '../Feed'
 class AppContainer extends Component {
   state = { confessions: [], profile: null }
 
+  componentWillMount() {
+    get('/api/confession').then(data => this.setState({ confessions: fixConfessionsDates(data) }))
+  }
+
   handleUpdateProfile = (profile) => {
     this.setState({ profile })
   }
 
   handleCreateConfession = (list) => {
-    this.setState({ confessions: list })
+    this.setState({ confessions: fixConfessionsDates(list) })
   }
 
   render() {

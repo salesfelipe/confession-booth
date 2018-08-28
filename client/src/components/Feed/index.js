@@ -16,7 +16,7 @@ export default class FeedComponent extends Component {
               <div className="w-100 bg-custom-gray mb4 pa3 custom-white" key={item.id}>
                 <p>{item.text}</p>
                 <div className="mb3 tr custom-blue">
-                  {`${item.author} - ${item.createdAt.getDate()}/${item.createdAt.getMonth() + 1}/${item.createdAt.getFullYear()}`}
+                  {`${item.author || 'anonimous'} - ${item.createdAt.getDate()}/${item.createdAt.getMonth() + 1}/${item.createdAt.getFullYear()}`}
                 </div>
                 <Button variation="tertiary" icon>
                   {item.isLiked ? (
