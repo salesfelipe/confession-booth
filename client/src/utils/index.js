@@ -5,4 +5,4 @@ export const post = (url, data) => fetch(url, {
     'Content-Type': 'application/json',
   },
   body: JSON.stringify(data),
-}).catch(e => console.log(e))
+}).then(res => res.json()).catch(e => console.log(e))

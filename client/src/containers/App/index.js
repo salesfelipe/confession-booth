@@ -10,20 +10,18 @@ import FeedContainer from '../Feed'
  * the others containers and share the profile data with them
  * */
 class AppContainer extends Component {
-  // state = { confessions: [], profile: null } //empty
-  state = {
-    profile: {
-      email: 'user@email.com',
-      userName: 'suricato-seboso',
-    },
-  } // dummy data
+  state = { confessions: [], profile: null }
 
   handleUpdateProfile = (profile) => {
     this.setState({ profile })
   }
 
+  handleCreateConfession = (list) => {
+    this.setState({ confessions: list })
+  }
+
   render() {
-    const { profile } = this.state
+    const { profile, confessions } = this.state
 
     return (
       <Fragment>
@@ -31,8 +29,8 @@ class AppContainer extends Component {
           profile={profile}
           onUpdateProfile={this.handleUpdateProfile}
         />
-        <ConfessionFormContainer profile={profile} />
-        <FeedContainer profile={profile} />
+        <ConfessionFormContainer profile={profile} onCreateConfession={this.handleCreateConfession} />
+        <FeedContainer profile={profile} confessions={confessions} />
       </Fragment>
     )
   }

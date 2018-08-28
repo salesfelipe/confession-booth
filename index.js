@@ -2,21 +2,14 @@ const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const mongodb = require('mongodb')
-
-const ObjectID = mongodb.ObjectID
-const CONFESSIONS_COLLECTION = 'confessions'
-
+const ConfessionService = require('./ConfessionService')
 const app = express()
 
 app.use(bodyParser.json())
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')))
 
-let db = null
-
-function handleError(res, message, status = 500) {
-  return res.status(status).json({ error: message })
-}
+let confessionService = null
 
 mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/test', { useNewUrlParser: true }, function (err, client) {
   if (err) {
@@ -25,7 +18,7 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:2701
   }
 
   // Save database object from the callback for reuse.
-  db = client.db()
+  confessionService = new ConfessionService(client.db())
   console.log('Database connection ready')
 
   // Initialize the app.
@@ -39,27 +32,43 @@ mongodb.MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:2701
  *    GET: finds all confessions
  *    POST: creates a new confession
  */
-app.get('/api/confession', function(req, res) {
-  db.collection(CONFESSIONS_COLLECTION).find({}).toArray(function(err, docs) {
-    if (err) {
-      handleError(res, err.message, 'Failed to get confessions.')
-    } else {
-      res.status(200).json(docs)
-    }
-  })
+app.get('/api/confession', async function(req, res) {
+  const confessions = await confessionService.getConfessions()
+
+  res.status(200).json(confessions)
 })
 
-app.post('/api/confession', function(req, res) {
+app.post('/api/confession', async function(req, res) {
   const newConfession = req.body
-  newConfession.createdAt = new Date()
 
-  db.collection(CONFESSIONS_COLLECTION).insertOne(newConfession, function(err, doc) {
-    if (err) {
-      handleError(res, err.message)
-    } else {
-      res.status(201).json(doc.ops[0])
-    }
-  })
+  await confessionService.createConfession(newConfession)
+  const confessions = await confessionService.getConfessions()
+
+  res.status(201).json(confessions)
+})
+
+/*  "/api/confession/:id/upVote"
+ *    PATCH: upVote confession
+ */
+app.patch('/api/confession/:id/upvote', async (req, res) => {
+  const id = req.params.id
+  const userName = req.body.userName
+
+  await confessionService.upVote(id, userName)
+
+  res.status(204)
+})
+
+/*  "/api/confession/:id/downVote"
+ *    PATCH: downVote confession
+ */
+app.patch('/api/confession/:id/downvote', async (req, res) => {
+  const id = req.params.id
+  const userName = req.body.userName
+
+  await confessionService.downVote(id, userName)
+
+  res.status(204)
 })
 
 // The "catchall" handler: for any request that doesn't
