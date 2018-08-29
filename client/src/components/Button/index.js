@@ -6,7 +6,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default class Button extends Component {
   handleClick = event => {
     const { disabled, onClick, isLoading } = this.props
-    console.log('handling click')
     !disabled && !isLoading && onClick && onClick(event)
   }
 

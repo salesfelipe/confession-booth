@@ -8,26 +8,26 @@ import Button from '../Button'
 /** FeedComponent to display the list of confessions */
 export default class FeedComponent extends Component {
   render() {
+    const { isLogged, onDownVote, onUpVote, confessions } = this.props
     return (
       <div className="w-60-ns w-100 mt5 shadow-3">
         <div className="bg-custom-dark-gray pa3 flex flex-wrap">
-          {this.props.confessions.map((item) => {
+          {confessions.map((item) => {
             return (
-              <div className="w-100 bg-custom-gray mb4 pa3 custom-white" key={item.id}>
+              <div className="w-100 bg-custom-gray mb4 pa3 custom-white" key={item._id}>
                 <p>{item.text}</p>
                 <div className="mb3 tr custom-blue">
                   {`${item.author || 'anonimous'} - ${item.createdAt.getDate()}/${item.createdAt.getMonth() + 1}/${item.createdAt.getFullYear()}`}
                 </div>
-                <Button variation="tertiary" icon>
-                  {item.isLiked ? (
-                    <label className="custom-blue">
-                      {item.likes} &nbsp;<FontAwesomeIcon icon="heart" />
-                    </label>
-                  ) : (
-                    <Fragment>
-                      {item.likes} &nbsp;<FontAwesomeIcon icon="heart" />
-                    </Fragment>
-                  )}
+                <Button variation="tertiary" icon
+                  disabled={!isLogged}
+                  onClick={() => {
+                    if (item.isLiked) { onDownVote(item._id) } else { onUpVote(item._id) }
+                  }}>
+                  <label className={item.isLiked && isLogged ? 'custom-blue' : undefined}>
+                    {(item.likes > 0) && <Fragment>{item.likes} &nbsp;</Fragment>}  <FontAwesomeIcon icon="heart" />
+                  </label>
+
                 </Button>
               </div>
             )
@@ -43,4 +43,10 @@ FeedComponent.propTypes = {
   confessions: PropTypes.arrayOf(
     confessionPropTypes
   ).isRequired,
+  /** Up vote a confession */
+  onUpVote: PropTypes.func.isRequired,
+  /** Down vote a confesison */
+  onDownVote: PropTypes.func.isRequired,
+  /** If the user is logged or not */
+  isLogged: PropTypes.bool.isRequired,
 }

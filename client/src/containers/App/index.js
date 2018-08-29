@@ -5,7 +5,8 @@ import LoginHeaderContainer from '../LoginHeader'
 import ConfessionFormContainer from '../ConfessionForm'
 import FeedContainer from '../Feed'
 
-import { get, fixConfessionsDates } from '../../utils'
+import { processConfessions } from '../../utils'
+import { get } from '../../utils/http'
 
 /**
  * App main container, responsible for rendering
@@ -15,15 +16,16 @@ class AppContainer extends Component {
   state = { confessions: [], profile: null }
 
   componentWillMount() {
-    get('/api/confession').then(data => this.setState({ confessions: fixConfessionsDates(data) }))
+    get('/api/confession').then(data => this.handleUpdateConfessions(data))
   }
 
   handleUpdateProfile = (profile) => {
     this.setState({ profile })
+    get('/api/confession').then(data => this.handleUpdateConfessions(data))
   }
 
-  handleCreateConfession = (list) => {
-    this.setState({ confessions: fixConfessionsDates(list) })
+  handleUpdateConfessions = (list) => {
+    this.setState({ confessions: processConfessions(list) })
   }
 
   render() {
@@ -35,8 +37,8 @@ class AppContainer extends Component {
           profile={profile}
           onUpdateProfile={this.handleUpdateProfile}
         />
-        <ConfessionFormContainer profile={profile} onCreateConfession={this.handleCreateConfession} />
-        <FeedContainer profile={profile} confessions={confessions} />
+        <ConfessionFormContainer profile={profile} onUpdateConfessions={this.handleUpdateConfessions} />
+        <FeedContainer profile={profile} confessions={confessions} onUpdateConfessions={this.handleUpdateConfessions} />
       </Fragment>
     )
   }

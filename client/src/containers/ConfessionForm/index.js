@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import { profilePropTypes } from '../../utils/propTypes'
 import ConfessionFormComponent from '../../components/ConfessionForm'
-import { post } from '../../utils'
+import { post } from '../../utils/http'
 
 /** ConfessionForm Container, responsible for submitting the confessions to the server */
 export default class ConfessionFormContainer extends Component {
@@ -28,7 +28,7 @@ export default class ConfessionFormContainer extends Component {
 
     post('/api/confession', confession).then((confessions) => {
       this.setState({ confession: '' })
-      this.props.onCreateConfession(confessions)
+      this.props.onUpdateConfessions(confessions)
     })
   }
 
@@ -52,5 +52,5 @@ ConfessionFormContainer.propTypes = {
   /** Current logged profile */
   profile: profilePropTypes,
   /** Funciton to update the confession list */
-  onCreateConfession: PropTypes.func.isRequired,
+  onUpdateConfessions: PropTypes.func.isRequired,
 }

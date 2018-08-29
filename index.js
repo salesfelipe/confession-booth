@@ -54,9 +54,11 @@ app.patch('/api/confession/:id/upvote', async (req, res) => {
   const id = req.params.id
   const userName = req.body.userName
 
+  console.log
+
   await confessionService.upVote(id, userName)
 
-  res.status(204)
+  res.status(200).json()
 })
 
 /*  "/api/confession/:id/downVote"
@@ -68,7 +70,7 @@ app.patch('/api/confession/:id/downvote', async (req, res) => {
 
   await confessionService.downVote(id, userName)
 
-  res.status(204)
+  res.status(200).json()
 })
 
 // The "catchall" handler: for any request that doesn't

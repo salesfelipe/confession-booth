@@ -1,24 +1,16 @@
-export const post = (url, data) => fetch(url, {
-  method: 'POST',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify(data),
-}).then(res => res.json()).catch(e => console.log(e))
+export const processConfessions = (list) => {
+  let result = list
 
-export const get = (url) => fetch(url, {
-  method: 'GET',
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-  },
-}).then(res => res.json()).catch(e => console.log(e))
+  if (!(list.length === 0 || typeof list[0].likes === 'number')) {
+    result = list.map((item) => {
+      item.createdAt = new Date(item.createdAt)
+      item.likes = item.likes.length
+      item.isLiked = item.likes > 0
 
-export const fixConfessionsDates = (list) => {
-  return list.map((item) => {
-    item.createdAt = new Date(item.createdAt)
+      return item
+    })
+  }
 
-    return item
-  })
+  return result
 }
+
