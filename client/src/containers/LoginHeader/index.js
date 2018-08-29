@@ -60,8 +60,6 @@ export default class LoginHeaderContainer extends Component {
 }
 
 LoginHeaderContainer.propTypes = {
-  /** Loading status */
-  loading: PropTypes.bool.isRequired,
   /** User info */
   profile: profilePropTypes,
   /** Function to update the profile state on main container */

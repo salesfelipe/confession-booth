@@ -9,6 +9,7 @@ import { post } from '../../utils/http'
 export default class ConfessionFormContainer extends Component {
   state = {
     confession: '',
+    loading: false,
   }
 
   handleChange = (value) => {
@@ -26,21 +27,24 @@ export default class ConfessionFormContainer extends Component {
       confession.author = profile.userName
     }
 
+    this.setState({ loading: true })
     post('/api/confession', confession).then((confessions) => {
-      this.setState({ confession: '' })
+      this.setState({ confession: '', loading: false })
       this.props.onUpdateConfessions(confessions)
     })
   }
 
   render() {
     const { profile } = this.props
+    const { loading, confession } = this.state
 
     const userName = profile && profile.userName
 
     return (
       <ConfessionFormComponent
         userName={userName}
-        confession={this.state.confession}
+        loading={loading}
+        confession={confession}
         onSubmit={this.handleSubmit}
         onConfessionChange={this.handleChange}
       />

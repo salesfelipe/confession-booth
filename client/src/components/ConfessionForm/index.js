@@ -15,7 +15,7 @@ export default class ConfessionFormComponent extends Component {
   }
 
   render() {
-    const { userName, confession } = this.props
+    const { userName, confession, loading } = this.props
 
     const today = new Date()
     const todayString = `${today.getDate()}/${today.getMonth() + 1}/${today.getFullYear()}`
@@ -39,7 +39,7 @@ export default class ConfessionFormComponent extends Component {
             </div>
             <div className="mb3 tr"> {todayString}</div>
 
-            <Button variation="primary" type="submit" block>
+            <Button variation="primary" type="submit" isLoading={loading} block>
               <span className="upper">
                 Enviar
               </span>
@@ -60,4 +60,6 @@ ConfessionFormComponent.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   /** Func to change the confession text in the container state */
   onConfessionChange: PropTypes.func.isRequired,
+  /** Loading status */
+  loading: PropTypes.bool.isRequired,
 }
