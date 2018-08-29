@@ -1,7 +1,7 @@
 export const processConfessions = (list) => {
   let result = list
 
-  if (!(list.length === 0 || typeof list[0].likes === 'number')) {
+  if (list && !(list.length === 0 || typeof list[0].likes === 'number')) {
     result = list.map((item) => {
       item.createdAt = new Date(item.createdAt)
       item.likes = item.likes.length
