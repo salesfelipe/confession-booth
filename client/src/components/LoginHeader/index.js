@@ -12,7 +12,7 @@ export default class LoginHeaderComponent extends Component {
   }
 
   render() {
-    const { onLogout, onChangeEmail, onChangePassword, profile, email, password } = this.props
+    const { onLogout, onChangeEmail, onChangePassword, profile, email, password, loading } = this.props
 
     return (
       <div className="cb-header w-100 top-0 absolute shadow-3 bg-custom-dark-gray pa3 f6 mb5">
@@ -22,7 +22,7 @@ export default class LoginHeaderComponent extends Component {
               <span className="mr2">
                 Bem vindo, &nbsp; <b className="custom-blue">{profile.userName}</b> !
               </span>
-              <Button type="submit" variation="secondary" size="small" onClick={onLogout}>
+              <Button type="submit" variation="secondary" size="small" onClick={onLogout} isLoading={loading}>
                 <span className="upper">Sair</span>
               </Button>
             </div>
@@ -38,7 +38,7 @@ export default class LoginHeaderComponent extends Component {
                 <label className="mr2">Senha</label>
                 <input className="bg-custom-white custom-gray" value={password} onChange={onChangePassword} type="password" />
               </span>
-              <Button type="submit" variation="secondary" size="small">
+              <Button type="submit" variation="secondary" size="small" isLoading={loading}>
                 <span className="upper">Entrar</span>
               </Button>
             </form>
@@ -64,5 +64,7 @@ LoginHeaderComponent.propTypes = {
   email: PropTypes.string.isRequired,
   /** Password in the container state */
   password: PropTypes.string.isRequired,
+  /** Loading status */
+  loading: PropTypes.bool.isRequired,
 }
 

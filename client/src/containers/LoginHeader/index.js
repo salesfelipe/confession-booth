@@ -9,6 +9,7 @@ export default class LoginHeaderContainer extends Component {
   state = {
     email: '',
     password: '',
+    loading: false,
   }
 
   handleChangeEmail = (event) => {
@@ -23,23 +24,32 @@ export default class LoginHeaderContainer extends Component {
     const { email, password } = this.state
 
     if (password === '1234' && email) {
-      this.setState({ email: '', password: '' })
-      this.props.onUpdateProfile({ email: email, userName: 'suricato-seboso' })
+      this.setState({ loading: true })
+      setTimeout(() => {
+        this.setState({ email: '', password: '', loading: false })
+        this.props.onUpdateProfile({ email: email, userName: 'suricato-seboso' })
+      }, 1000)
     }
   }
 
   handleLogout = () => {
-    console.log('login out')
-    this.props.onUpdateProfile(null)
+    this.setState({ loading: true })
+    setTimeout(() => {
+      this.setState({ loading: false })
+      this.props.onUpdateProfile(null)
+    }, 1000)
   }
 
   render() {
-    const { email, password } = this.state
+    const { email, password, loading } = this.state
+    const { profile } = this.props
+
     return (
       <LoginHeaderComponent
         email={email}
         password={password}
-        profile={this.props.profile}
+        loading={loading}
+        profile={profile}
         onLogin={this.handleLogin}
         onLogout={this.handleLogout}
         onChangeEmail={this.handleChangeEmail}
@@ -50,6 +60,8 @@ export default class LoginHeaderContainer extends Component {
 }
 
 LoginHeaderContainer.propTypes = {
+  /** Loading status */
+  loading: PropTypes.bool.isRequired,
   /** User info */
   profile: profilePropTypes,
   /** Function to update the profile state on main container */
