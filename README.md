@@ -29,3 +29,7 @@ The login feature is parcially made, only the frontend is ready, but you can sig
  * 2 - Run `yarn` on the root and `client` folder to install the deps
  * 3 - Run `yarn start` on the root and `client` folder to start the app
  * 4 - The front will be running on port `3000` and the backend on port `5000`, `localhost`.
+
+## Instructions to run the tests
+ * 1 - Run `yarn` on the root and `client` folder to install the deps
+ * 2 - Run `yarn test` on the `client` folder to execute the tests
